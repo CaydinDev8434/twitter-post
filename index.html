@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User's Tweet Room!</title>
+    <style>
+        body {
+            background-color: #666;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        textarea {
+            width: 100%;
+            resize: vertical;
+        }
+        button {
+            background-color: #4caf50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0px;
+            cursor: pointer;
+        }
+        .tweet {
+            color: white;
+            background-color: #f0f0f05b;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .tweet-header {
+            display: flex;
+            align-items: center;
+        }
+        #tweet-text {
+            background-color: #f0f0f05b;
+            color: white;
+            border-radius: 5px;
+        }
+        .username {
+            margin-left: 5px;
+        }
+        footer {
+            background-color: #f0f0f05b;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        img {
+            height: 50px;
+            width: 50px;
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <h1>User's Tweet Room!</h1>
+    <textarea id="tweet-text" rows="4" cols="50" placeholder="What's on your mind, @user?"></textarea>
+    <button id="tweet-btn">Post</button>
+    <div id="tweet-container"></div>
+    <script>        
+        // Get the tweet textarea and button elements
+        const tweetText = document.getElementById("tweet-text");
+        const tweetBtn = document.getElementById("tweet-btn");
+
+        // Function to create a new tweet element
+        function createTweet(tweetTextValue) {
+            // Create a new tweet element
+            const tweet = document.createElement("div");
+            tweet.classList.add("tweet");
+
+            // Create the tweet header element
+            const tweetHeader = document.createElement("div");
+            tweetHeader.classList.add("tweet-header");
+
+            // Create the profile pic element
+            const profilePic = document.createElement("img");
+            profilePic.src = "icon.png";
+            profilePic.alt = "Profile Unloaded";
+            tweetHeader.appendChild(profilePic);
+
+            // Create the username element
+            const username = document.createElement("div");
+            username.classList.add("username");
+            username.textContent = "@user123_gaming_blue"; // replace with actual username
+            tweetHeader.appendChild(username);
+
+            // Create the tweet content element
+            const tweetContent = document.createElement("div");
+            tweetContent.textContent = tweetTextValue;
+            tweet.appendChild(tweetHeader);
+            tweet.appendChild(tweetContent);
+
+            return tweet;
+        }
+
+        // Function to add a new tweet to the page
+        function addTweet(tweet) {
+            const tweetContainer = document.getElementById("tweet-container");
+            tweetContainer.appendChild(tweet);
+        }
+
+        // Function to handle the tweet button click event
+        function handleTweetBtnClick() {
+            // Get the tweet text
+            const tweetTextValue = tweetText.value.trim();
+
+            // Check if the tweet text is not empty
+            if (tweetTextValue.length > 0) {
+                // Create a new tweet element
+                const tweet = createTweet(tweetTextValue);
+
+                // Add the tweet to the page
+                addTweet(tweet);
+
+                // Reset the tweet textarea
+                tweetText.value = "";
+            }
+        }
+
+        // Add event listener to the tweet button
+        tweetBtn.addEventListener("click", handleTweetBtnClick);
+    </script>
+</body>
+    <footer> You've reached the maximum of your's and your friends tweets! </footer>
+</html>
